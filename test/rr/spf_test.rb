@@ -6,7 +6,7 @@ class RR_SPF_Test < DNS::Zone::TestCase
     rr = DNS::Zone::RR::SPF.new
     rr.ttl = '2w'
     rr.text = 'v=spf1 +mx -all'
-    assert_equal '@ 2w IN SPF "v=spf1 +mx -all"', rr.dump
+    assert_equal '@ 2w IN SPF ("v=spf1 +mx -all")', rr.dump
   end
 
   def test_load_rr__spf

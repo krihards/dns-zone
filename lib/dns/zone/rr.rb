@@ -7,7 +7,7 @@ module DNS
 
       REGEX_TTL = /\d+[wdmhs]?/i
       REGEX_KLASS = /(?<klass>IN)?/i
-      REGEX_TYPE = /(?<type>A|AAAA|CDNSKEY|CDS|CNAME|DLV|DNSKEY|DS|HINFO|MX|NAPTR|NS|NSEC|NSEC3|NSEC3PARAM|RRSIG|SOA|SPF|SRV|SSHFP|TXT|PTR)\s{1}/i
+      REGEX_TYPE = /(?<type>A|AAAA|CDNSKEY|CDS|CNAME|DLV|DNSKEY|DS|HINFO|MX|NAPTR|NS|NSEC|NSEC3|NSEC3PARAM|RRSIG|SOA|SPF|SRV|SSHFP|TXT|PTR|LOC)\s{1}/i
       REGEX_RR = /^(?<label>\S+|\s{1})\s*(?<ttl>#{REGEX_TTL})?\s*#{REGEX_KLASS}\s*#{REGEX_TYPE}\s*(?<rdata>[\s\S]*)$/i
       REGEX_DOMAINNAME = /\S+\.?/i
       REGEX_STRING = /((?:[^"\\]+|\\.)*)/
@@ -52,6 +52,7 @@ module DNS
         when 'SRV'         then SRV.new.load(string, options)
         when 'SSHFP'       then SSHFP.new.load(string, options)
         when 'TXT'         then TXT.new.load(string, options)
+        when 'LOC'         then LOC.new.load(string, options)
         else
           raise 'Unknown or unsupported RR Type'          
         end
@@ -81,6 +82,7 @@ module DNS
       autoload :SRV,        'dns/zone/rr/srv'
       autoload :SSHFP,      'dns/zone/rr/sshfp'
       autoload :TXT,        'dns/zone/rr/txt'
+      autoload :LOC,        'dns/zone/rr/loc'
     end
 
   end
