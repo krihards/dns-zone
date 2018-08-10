@@ -5,11 +5,11 @@ class DNS::Zone::RR::LOC < DNS::Zone::RR::Record
     REGEX_LOC_RDATA = %r{
     (?<lat_degrees>\d+)\s*
     (?<lat_minutes>\d+)\s*
-    (?<lat_seconds>\d+\.\d+)\s*
+    (?<lat_seconds>\d+(?:[.,]\d{1,3})?)\s*
     (?<lat_direction>[N|S])\s*
     (?<long_degrees>\d+)\s*
     (?<long_minutes>\d+)\s*
-    (?<long_seconds>\d+\.\d+)\s*
+    (?<long_seconds>\d+(?:[.,]\d{1,3})?)\s*
     (?<long_direction>[E|W])\s*
     (?<altitude>-?(\d+\.\d+|\d+|\.\d+)m)\s*
     (?<size>(\d+\.\d+|\d+|\.\d+)m)?\s*

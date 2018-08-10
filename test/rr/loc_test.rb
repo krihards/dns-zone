@@ -83,4 +83,27 @@ class RR_LOC_Test < DNS::Zone::TestCase
     assert_equal '10m', rr.precision_vert
 
   end
+
+
+  def test_load_rr__seconds_int
+    rr = DNS::Zone::RR::LOC.new.load('@ IN LOC 52 14 5 N 0 08 50 E 9999m')
+    assert_equal '@', rr.label
+    assert_equal 'LOC', rr.type
+
+    assert_equal 52, rr.lat_degrees
+    assert_equal 14, rr.lat_minutes
+    assert_equal '5', rr.lat_seconds
+    assert_equal 'N', rr.lat_direction
+
+    assert_equal 0, rr.long_degrees
+    assert_equal 8, rr.long_minutes
+    assert_equal '50', rr.long_seconds
+    assert_equal 'E', rr.long_direction
+
+    assert_equal '9999m', rr.altitude
+
+  end
+
+
+
 end
